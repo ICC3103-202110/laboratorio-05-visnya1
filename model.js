@@ -1,8 +1,8 @@
 initModel = 
 {
-    billAmount: 0,
-    percentage: '+',
-    tip: 0,
+    billAmount: 0, 
+    percentage: '%',  
+    tip: 0,    
     total:0,
 } 
 

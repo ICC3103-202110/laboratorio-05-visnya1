@@ -19,13 +19,15 @@ function getTitle()
 function getTable(model)
 {
     const {billAmount} = model
+    const {percentage} = model
     const {tip} = model
     const {total} = model
 
     return [{
-            BillAmount: billAmount,
-            Tip: tip,
-            Total: total
+            'Bill Amount': billAmount,
+            'Tip (%)': percentage,
+            'Tip': tip,
+            'Total': total
         },
         
     ]
@@ -35,15 +37,15 @@ function inputForm(model)
 {
     const {billAmount} = model
     const message1 = 'Bill Amount?'
-    const {tip} = model
+    const {percentage} = model
     const message2 = 'Tip(%)?'
     
     return inquirer.prompt([
         {
             name: 'billAmount',
-            type : 'input',
+            type : 'int',
             message: message1,
-            default: input1,
+            default: billAmount,
             validate: function(value)
             {
                 if(value >= 1)
@@ -52,15 +54,15 @@ function inputForm(model)
                 }
                 else
                 {
-                   return false 
+                   return 'it has to be a real number'
                 }
             }
         },
         {
-            name: 'tip',
-            type : 'input',
+            name: 'percentage',
+            type : 'int',
             message: message2,
-            default: input2,
+            default: percentage,
             validate: function(value)
             {
                 if(value >= 1)
@@ -76,31 +78,29 @@ function inputForm(model)
     ])
 }
 
-
 function listForm(model)
 {
     const {billAmount} = model
     const message1 = 'Bill Amount?'
-    const {tip} = model
+    const {percentage} = model
     const message2 = 'Tip(%)?'
     
     
     return inquirer.prompt([
         {
             name: 'billAmount',
-            type : 'input',
+            type : 'int',
             message: message1,
             default: billAmount          
         },
         {
-            name: 'tip',
-            type : 'input',
+            name: 'percentage',
+            type : 'int',
             message: message2,
-            default: tip       
+            default: percentage       
         }
     ])
 }
-
 
 function view(model)
 {
